@@ -19,7 +19,7 @@ class LuoPinDataLoader {
         }
 
         try {
-            const response = await fetch('luopin.json');
+            const response = await fetch('../data/luopin.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
