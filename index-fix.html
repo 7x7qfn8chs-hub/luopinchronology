@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>罗聘年谱数字档案 - 入口</title>
+    <meta http-equiv="refresh" content="0; url=pages/landingpage-dynamic.html">
+    <style>
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: #fcf9f0;
+            color: #1c1c17;
+            margin: 0;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .loading {
+            margin: 2rem 0;
+        }
+        .spinner {
+            border: 3px solid #e1bebc;
+            border-top: 3px solid #9a131d;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .links {
+            margin-top: 2rem;
+        }
+        .links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #8d706e;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #8d706e;
+            transition: all 0.3s ease;
+        }
+        .links a:hover {
+            background-color: #9a131d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>罗聘年谱数字档案</h1>
+    <p>正在加载...</p>
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
+    <div class="links">
+        <a href="pages/landingpage-dynamic.html">进入主页</a>
+        <a href="pages/timeline-new.html">完整时间轴</a>
+        <a href="pages/research-dynamic.html">高级搜索</a>
+        <a href="pages/keyword-dynamic.html">关键词搜索</a>
+    </div>
+    <p><small>如果页面没有自动跳转，请点击上方链接</small></p>
+</body>
+</html>

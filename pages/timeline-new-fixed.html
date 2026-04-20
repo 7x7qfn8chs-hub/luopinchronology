@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Luo Pin Detailed Chronology | The Silent Archivist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">tailwind.config = {
+              darkMode: "class",
+              theme: {
+                extend: {
+                  "colors": {
+                    "tertiary-fixed-dim": "#81d2e5",
+                    "on-tertiary-container": "#a8eeff",
+                    "tertiary": "#005562",
+                    "on-primary": "#ffffff",
+                    "primary": "#9a131d",
+                    "secondary-container": "#e4e2e1",
+                    "primary-fixed-dim": "#ffb3ae",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#a7eeff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#e1bebc",
+                    "background": "#fcf9f0",
+                    "surface-tint": "#b3282c",
+                    "on-primary-container": "#ffdbd8",
+                    "surface-container-high": "#ebe8df",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "inverse-on-surface": "#f4f1e8",
+                    "surface-container": "#f1eee5",
+                    "outline": "#8d706e",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004e5b",
+                    "on-surface": "#1c1c17",
+                    "surface-container-highest": "#e5e2da",
+                    "primary-container": "#bc2f32",
+                    "surface-bright": "#fcf9f0",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed": "#ffdad7",
+                    "surface-variant": "#e5e2da",
+                    "inverse-surface": "#31312b",
+                    "error": "#ba1a1a",
+                    "on-background": "#1c1c17"
+                  },
+                  "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Newsreader"],
+                    "label": ["Manrope"]
+                  }
+                },
+              },
+            }</script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #fcf9f0; }
+        ::-webkit-scrollbar-thumb { background: #e1bebc; }
+
+        .timeline-trigger {
+            opacity: 0.15;
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .timeline-trigger.is-visible {
+            opacity: 1;
+        }
+
+        .vertical-line-animated {
+            background: linear-gradient(to bottom, #e1bebc 0%, #9a131d 100%);
+            transform-origin: top;
+            transform: scaleY(0);
+            transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1.5s ease;
+            opacity: 0.2;
+        }
+        .vertical-line-animated.is-visible {
+            transform: scaleY(1);
+        }
+
+        .seal-bg {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+        }
+
+        /* Styling to blend the portrait seamlessly */
+        .portrait-blend {
+            mix-blend-mode: multiply;
+            filter: contrast(1.05) sepia(0.2);
+        }
+
+        /* 加载状态样式 */
+        .loading-state {
+            text-align: center;
+            padding: 5rem 0;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            border: 2px solid #e1bebc;
+            border-radius: 50%;
+            border-top-color: #9a131d;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary/10">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-6 md:px-12 h-20 bg-[#fcf9f0]/85 backdrop-blur-[20px] justify-end">
+    <div class="flex items-center gap-6">
+        <a href="landingpage.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> home </a>
+        <a href="research.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> search </a>
+    </div>
+</header>
+
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <!-- Hero Section -->
+    <section class="mb-24 flex flex-col md:flex-row items-end gap-12">
+        <div class="flex-1">
+            <div class="mb-4 inline-block bg-primary text-on-primary px-4 py-4 seal-bg">
+                <span class="font-label text-xs uppercase tracking-[0.2em]">扬州八怪</span>
+            </div>
+            <h2 class="text-6xl md:text-8xl font-headline font-light tracking-tighter mt-6">罗聘</h2>
+            <p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mt-8 font-light leading-relaxed italic">
+                A detailed chronology of Luo Pin (1733–1799), the youngest of the Eight Eccentrics of Yangzhou, mapping a life of spectral visions and scholarly ink.
+            </p>
+        </div>
+        <div class="w-full md:w-1/3 aspect-[3/4] flex items-end justify-center relative group">
+            <img alt="Luo Pin Portrait" class="max-h-full w-auto object-contain portrait-blend group-hover:scale-[1.02] transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uh7pzjma_aVZpGkkosbBwBO6lLDpWEXlAvHF8DkPXSJb6ne-duSFcVVQnaUGyHohWXIo6fG1vIykfiUzme4PkvzmY4v9vLjdyLn6xecpueU1AD3L4j5UCIZu0IyS2j5liG69181GLlk5D1e1zwWsr40ZRzW5y012X0qbna5J87Lw2qEFSZ0WrDPmQha9_ij7aGeR9FfRKah4A2NZg9qII3FGFHv5S_ttYJsHy1Xv3RtFntWGglelLMDXEgnzAIRk2mlX2cOqpYkW3A"/>
+            <!-- Background decor for the portrait to sit on -->
+            <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-surface-container-low/50 to-transparent -z-10"></div>
+        </div>
+    </section>
+
+    <!-- Chronology Layout -->
+    <div class="relative flex flex-col gap-0" id="chronology-container">
+        <!-- Continuous Timeline Line -->
+        <div class="absolute left-0 md:left-1/3 top-0 bottom-0 w-px vertical-line-animated md:ml-[-0.5px]" id="timeline-line"></div>
+
+        <!-- 加载状态 -->
+        <div id="loading-state" class="loading-state">
+            <div class="text-2xl font-headline text-outline mb-4">正在加载年谱数据...</div>
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- 动态内容将通过JavaScript加载 -->
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-16 px-6 md:px-12 flex flex-col items-center gap-8 border-t border-[#e1bebc]/20 bg-[#f7f3ea]">
+    <div class="text-lg font-serif text-[#1c1c17]">The Silent Archivist</div>
+    <nav class="flex flex-wrap justify-center gap-6 md:gap-12">
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="landingpage.html">首页</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="research.html">搜索</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="keyword.html">关键词</a>
+    </nav>
+    <p class="font-label text-[10px] uppercase tracking-widest text-outline/60 text-center">
+        © 1644–1912 Digital Archive of the Imperial Court. All Rights Reserved.
+    </p>
+</footer>
+
+<!-- 数据加载模块 -->
+<script src="../src/js/data-loader.js"></script>
+
+<!-- 动态加载脚本 -->
+<script>
+    // 动态加载年谱数据
+    document.addEventListener('DOMContentLoaded', async () => {
+        const chronologyContainer = document.getElementById('chronology-container');
+        const timelineLine = document.getElementById('timeline-line');
+        const loadingState = document.getElementById('loading-state');
+
+        if (!chronologyContainer) {
+            console.error('找不到chronology-container元素');
+            return;
+        }
+
+        try {
+            const data = await window.luoPinData.getAllData();
+
+            if (data.length === 0) {
+                loadingState.innerHTML = '<div class="text-red-500">数据加载失败</div>';
+                return;
+            }
+
+            // 隐藏加载状态
+            loadingState.style.display = 'none';
+
+            // 生成时间轴内容
+            const timelineHTML = data.map(item => `
+                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 py-20 border-b border-outline-variant/10 timeline-entry" data-year="${item.year}">
+                    <div class="md:text-right pr-12 z-10 timeline-trigger">
+                        <div class="flex flex-col md:items-end">
+                            <span class="text-4xl md:text-5xl font-headline font-medium text-primary">${item.year}</span>
+                            <span class="text-2xl md:text-3xl font-headline text-on-surface mt-1">${item.qing_calendar}</span>
+                            <span class="font-label text-xs uppercase tracking-widest text-outline mt-4 bg-surface-container-low px-2 py-1 inline-block">${item.age}岁</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 pl-4 md:pl-20">
+                        <div class="max-w-xl">
+                            ${item.title ? `<p class="text-2xl md:text-3xl leading-snug font-serif mb-6">${item.title}</p>` : ''}
+                            <p class="text-2xl md:text-3xl leading-snug font-serif mb-6">${item.description}</p>
+                            ${item.date ? `<p class="text-lg font-serif text-outline mb-4">${item.date}</p>` : ''}
+                            ${item.reference ? `<p class="text-sm font-label text-outline text-right italic tracking-wide">参考文献: ${item.reference}</p>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 添加到容器中
+            chronologyContainer.insertAdjacentHTML('beforeend', timelineHTML);
+
+            // 重新初始化观察器，确保新加载的内容有动画效果
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -15% 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.timeline-trigger').forEach(el => observer.observe(el));
+            timelineLine.classList.add('is-visible');
+
+        } catch (error) {
+            console.error('加载年谱数据失败:', error);
+            loadingState.innerHTML = '<div class="text-red-500">数据加载失败，请刷新页面重试</div>';
+        }
+    });
+</script>
+
+</html>
