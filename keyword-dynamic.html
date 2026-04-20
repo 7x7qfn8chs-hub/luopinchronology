@@ -1,0 +1,283 @@
+<!DOCTYPE html><html class="light" lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#410004",
+                      "inverse-surface": "#31312b",
+                      "surface-tint": "#b3282c",
+                      "inverse-on-surface": "#f4f1e8",
+                      "on-primary-fixed-variant": "#900918",
+                      "outline": "#8d706e",
+                      "on-primary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "background": "#fcf9f0",
+                      "tertiary-container": "#006f80",
+                      "on-tertiary-fixed-variant": "#004e5b",
+                      "on-surface": "#1c1c17",
+                      "on-secondary-fixed-variant": "#474747",
+                      "surface-variant": "#e5e2da",
+                      "surface": "#fcf9f0",
+                      "on-tertiary-container": "#a8eeff",
+                      "on-background": "#1c1c17",
+                      "primary-container": "#bc2f32",
+                      "surface-container-low": "#f7f3ea",
+                      "secondary": "#5f5e5e",
+                      "surface-dim": "#dddad1",
+                      "secondary-container": "#e4e2e1",
+                      "surface-container": "#f1eee5",
+                      "on-surface-variant": "#59413f",
+                      "tertiary": "#005562",
+                      "surface-bright": "#fcf9f0",
+                      "primary": "#9a131d",
+                      "outline-variant": "#e1bebc",
+                      "surface-container-high": "#ebe8df",
+                      "on-tertiary-fixed": "#001f25",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#e4e2e1",
+                      "inverse-primary": "#ffb3ae",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#a7eeff",
+                      "primary-fixed": "#ffdad7",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#e5e2da",
+                      "tertiary-fixed-dim": "#81d2e5",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#656464",
+                      "on-primary-container": "#ffdbd8",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#ffb3ae",
+                      "on-secondary-fixed": "#1b1c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Noto Serif SC", "serif"],
+                      "body": ["Noto Serif SC", "serif"],
+                      "label": ["Noto Serif SC", "serif"]
+              }
+            },
+          },
+        }
+      </script>
+  <style>
+          .material-symbols-outlined {
+              font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+          }
+          .highlight-red {
+              color: #9a131d;
+              font-weight: 700
+          }
+          body {
+              background-color: #fcf9f0;
+              font-family: 'Noto Serif SC', serif;
+          }
+      </style>
+  </head>
+  <body class="text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen">
+  <main class="pt-16 pb-24 px-6 md:px-12 max-w-5xl mx-auto">
+  <!-- Search Header Section -->
+  <section class="mb-16 flex flex-col items-center">
+  <div class="w-full">
+  <form class="flex items-center bg-white rounded-full border border-stone-200 p-1.5 shadow-sm focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all duration-300" onsubmit="handleSearch(event)">
+  <div class="flex-1 flex items-center">
+  <div class="px-4 text-stone-400">
+  <span class="material-symbols-outlined text-[20px]" style="">search</span>
+  </div>
+  <input class="w-full bg-transparent border-none py-2 px-0 text-base font-serif text-on-surface focus:ring-0 placeholder-stone-300" id="search-input" placeholder="关键词检索..." type="text" value="">
+  </div>
+  <button class="bg-primary hover:bg-on-primary-fixed-variant text-white px-6 py-2 rounded-full transition-colors duration-300 ml-2" type="submit">
+  <span class="text-sm font-medium tracking-wide" style="">检索</span>
+  </button>
+  </form>
+  <div class="mt-4 flex justify-between items-center px-4">
+  <h1 class="text-xs text-stone-500 uppercase tracking-widest" id="search-title">搜索结果: 罗聘年谱</h1>
+  <span class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold" id="result-count">0 条检索结果</span>
+  </div>
+  </div>
+  </section>
+
+  <!-- Loading State -->
+  <div id="loading-state" class="text-center py-20">
+    <div class="text-2xl font-headline text-outline mb-4">正在加载搜索结果...</div>
+    <div class="loading-spinner mx-auto"></div>
+  </div>
+
+  <!-- Chronological Results List -->
+  <div class="space-y-0" id="search-results">
+  <!-- Results will be dynamically generated -->
+  </div>
+  </main>
+
+  <!-- Data Loader -->
+  <script src="data-loader.js"></script>
+
+  <script>
+    // Get search parameters from URL
+    function getSearchParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        keyword: params.get('q') || '',
+        startYear: params.get('start') || null,
+        endYear: params.get('end') || null
+      };
+    }
+
+    // Handle search form submission
+    function handleSearch(event) {
+      event.preventDefault();
+      const keyword = document.getElementById('search-input').value.trim();
+      if (keyword) {
+        window.location.search = `q=${encodeURIComponent(keyword)}`;
+      }
+    }
+
+    // Highlight search terms
+    function highlightText(text, keyword) {
+      if (!keyword || !text) return text;
+      const regex = new RegExp(`(${keyword})`, 'gi');
+      return text.replace(regex, '<span class="highlight-red">$1</span>');
+    }
+
+    // Format display data
+    function formatResult(item, keyword = '') {
+      return {
+        year: item.year,
+        qingCalendar: item.qing_calendar,
+        age: item.age,
+        title: item.title ? highlightText(item.title, keyword) : '',
+        description: highlightText(item.description, keyword),
+        reference: item.reference,
+        date: item.date
+      };
+    }
+
+    // Generate result HTML
+    function generateResultHTML(item, keyword = '') {
+      const formatted = formatResult(item, keyword);
+      return `
+        <article class="grid grid-cols-1 md:grid-cols-12 gap-8 py-10 border-b border-outline-variant/10">
+          <div class="md:col-span-3">
+            <div class="flex items-start gap-4">
+              <div class="w-[2px] h-10 bg-primary"></div>
+              <div>
+                <h2 class="text-xl font-bold leading-none mb-1">${formatted.year}年</h2>
+                <p class="text-xs text-stone-500">${formatted.qingCalendar}</p>
+                <span class="inline-block mt-3 px-2 py-0.5 bg-surface-container-highest text-primary text-[10px] font-bold">${formatted.age}岁</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-9">
+            <div class="max-w-3xl">
+              <p class="text-base leading-relaxed text-on-surface-variant">
+                ${formatted.description}
+              </p>
+              ${formatted.title ? `<p class="text-lg font-bold mt-2 text-on-surface">${formatted.title}</p>` : ''}
+              ${formatted.date ? `<p class="text-sm text-outline mt-2">${formatted.date}</p>` : ''}
+              <div class="mt-4">
+                <cite class="text-stone-400 text-xs italic">${formatted.reference || '《罗聘年谱》'}</cite>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // Load and display search results
+    async function loadSearchResults() {
+      const searchParams = getSearchParams();
+      const searchInput = document.getElementById('search-input');
+      const searchTitle = document.getElementById('search-title');
+      const resultCount = document.getElementById('result-count');
+      const searchResults = document.getElementById('search-results');
+      const loadingState = document.getElementById('loading-state');
+
+      // Set initial search value
+      if (searchParams.keyword) {
+        searchInput.value = searchParams.keyword;
+      }
+
+      try {
+        // Load data
+        const data = await window.luoPinData.getAllData();
+
+        if (data.length === 0) {
+          loadingState.innerHTML = '<div class="text-2xl font-headline text-red-500 mb-4">数据加载失败</div>';
+          return;
+        }
+
+        // Filter results
+        let results = data;
+
+        if (searchParams.keyword) {
+          results = await window.luoPinData.searchByKeyword(searchParams.keyword);
+        }
+
+        if (searchParams.startYear || searchParams.endYear) {
+          const start = parseInt(searchParams.startYear) || 1733;
+          const end = parseInt(searchParams.endYear) || 1799;
+          results = await window.luoPinData.getDataByYearRange(start, end);
+        }
+
+        // Hide loading state
+        loadingState.style.display = 'none';
+
+        // Update counts
+        resultCount.textContent = `${results.length} 条检索结果`;
+        if (searchParams.keyword) {
+          searchTitle.textContent = `搜索结果: "${searchParams.keyword}"`;
+        }
+
+        // Display results
+        if (results.length === 0) {
+          searchResults.innerHTML = `
+            <div class="text-center py-20">
+              <div class="text-2xl font-headline text-outline mb-4">未找到匹配结果</div>
+              <div class="text-sm text-stone-500">请尝试其他关键词或时间段</div>
+            </div>
+          `;
+        } else {
+          const resultsHTML = results
+            .map(item => generateResultHTML(item, searchParams.keyword))
+            .join('');
+          searchResults.innerHTML = resultsHTML;
+        }
+
+      } catch (error) {
+        console.error('加载搜索结果失败:', error);
+        loadingState.innerHTML = '<div class="text-2xl font-headline text-red-500 mb-4">搜索失败，请刷新页面重试</div>';
+      }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', loadSearchResults);
+  </script>
+
+  <style>
+    .loading-spinner {
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      border: 2px solid #e1bebc;
+      border-radius: 50%;
+      border-top-color: #9a131d;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  </body></html>

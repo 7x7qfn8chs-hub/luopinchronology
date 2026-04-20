@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luo Pin Chronicle - The Silent Archivist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#BC2F32",
+                "background-light": "#f8f6f6",
+                "background-dark": "#1f1313",
+                "primary-fixed": "#ffdad7",
+                "on-secondary-fixed": "#1b1c1c",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#fcf9f0",
+                "on-secondary-container": "#656464",
+                "surface-bright": "#fcf9f0",
+                "secondary-fixed": "#e4e2e1",
+                "tertiary-fixed-dim": "#81d2e5",
+                "tertiary": "#005562",
+                "secondary-fixed-dim": "#c8c6c5",
+                "on-primary-fixed": "#410004",
+                "surface-container-low": "#f7f3ea",
+                "tertiary-fixed": "#a7eeff",
+                "on-surface-variant": "#59413f",
+                "primary-fixed-dim": "#ffb3ae",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#ebe8df",
+                "on-tertiary-fixed": "#001f25",
+                "on-secondary-fixed-variant": "#474747",
+                "on-secondary": "#ffffff",
+                "tertiary-container": "#006f80",
+                "inverse-primary": "#ffb3ae",
+                "inverse-on-surface": "#f4f1e8",
+                "secondary": "#5f5e5e",
+                "surface-tint": "#b3282c",
+                "on-tertiary-fixed-variant": "#004e5b",
+                "error-container": "#ffdad6",
+                "primary-container": "#bc2f32",
+                "surface-variant": "#e5e2da",
+                "outline": "#8d706e",
+                "inverse-surface": "#31312b",
+                "secondary-container": "#e4e2e1",
+                "outline-variant": "#e1bebc",
+                "surface-container-highest": "#e5e2da",
+                "surface-dim": "#dddad1",
+                "on-primary-fixed-variant": "#900918",
+                "on-primary": "#ffffff",
+                "on-surface": "#1c1c17",
+                "on-error": "#ffffff",
+                "surface-container": "#f1eee5",
+                "on-tertiary": "#ffffff",
+                "background": "#fcf9f0",
+                "on-tertiary-container": "#a8eeff",
+                "on-primary-container": "#ffdbd8",
+                "error": "#ba1a1a",
+                "on-background": "#1c1c17"
+              },
+              "borderRadius": {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+              "fontFamily": {
+                "display": ["Newsreader"],
+                "headline": ["Noto Serif SC", "serif"],
+                "body": ["Noto Serif SC", "serif"],
+                "label": ["Noto Serif SC", "serif"]
+              }
+            },
+          },
+        }</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        
+        #search-toggle:checked ~ .search-keyword-container {
+            width: 0;
+            opacity: 0;
+            padding: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        #search-toggle:checked ~ .search-time-container {
+            width: 100%;
+            opacity: 1;
+        }
+        #search-toggle:not(:checked) ~ .search-time-container {
+            width: 40%;
+        }
+        
+        .transition-all-custom {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-primary min-h-screen flex items-center justify-center relative overflow-hidden">
+<!-- Main Container centered vertically and horizontally -->
+<main class="w-full max-w-5xl px-8 z-10">
+<div class="flex flex-col items-center">
+<!-- Branding Header -->
+<!-- Search Interface Section -->
+<div class="w-full max-w-3xl">
+<div class="relative group">
+<!-- The Search "Vessel" -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 flex items-stretch h-20 transition-all-custom shadow-sm group-hover:shadow-md rounded-2xl overflow-hidden">
+<input class="toggle-input" id="search-toggle" type="checkbox"/>
+<!-- Keyword Section (Left) -->
+<div class="search-keyword-container flex-1 flex items-center px-8 transition-all-custom group/keyword">
+<span class="material-symbols-outlined text-outline mr-4 group-hover/keyword:text-primary transition-colors">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-xl font-body placeholder:text-outline/40 placeholder:font-light" placeholder="关键词搜索" type="text"/>
+</div>
+<!-- Divider -->
+<div class="w-px bg-outline-variant/20 my-6 transition-opacity duration-300 peer-checked:opacity-0"></div>
+<!-- Time Period Section (Right / Becomes Main) -->
+<label class="search-time-container relative flex items-center transition-all-custom cursor-pointer overflow-hidden group/time" for="search-toggle">
+<!-- Initial State Labels -->
+<div class="absolute inset-0 flex items-center px-8 transition-opacity duration-300 whitespace-nowrap peer-checked:opacity-0 group-has-[:checked]:opacity-0">
+<span class="material-symbols-outlined mr-4 group-hover/time:text-primary transition-colors text-outline/40">calendar_today</span>
+<span class="font-body text-xl text-outline/40 font-light">时间段搜索</span>
+</div>
+<!-- Morphed State Inputs -->
+<div class="flex-1 opacity-0 group-has-[:checked]:opacity-100 flex items-center transition-all duration-500 delay-100 h-full w-full">
+<div class="flex-1 px-8 flex flex-col justify-center">
+<span class="font-label text-[9px] uppercase tracking-tighter text-outline/60 mb-1">起始年份</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-2xl font-body p-0 appearance-none m-0" onclick="event.stopPropagation()" placeholder="1733" type="number"/>
+</div>
+<div class="w-px h-10 bg-outline-variant/30"></div>
+<div class="flex-1 px-8 flex flex-col justify-center">
+<span class="font-label text-[9px] uppercase tracking-tighter text-outline/60 mb-1">截至年份</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-2xl font-body p-0 appearance-none m-0" onclick="event.stopPropagation()" placeholder="1799" type="number"/>
+</div>
+<!-- Close Toggle -->
+<button class="px-6 h-full flex items-center justify-center hover:bg-surface-container-low transition-colors group/close" onclick="document.getElementById('search-toggle').checked = false; event.preventDefault();" type="button">
+<span class="material-symbols-outlined text-outline group-hover/close:text-primary">close</span>
+</button>
+</div>
+</label>
+<!-- Main Inquiry Button -->
+<button class="bg-primary text-on-primary px-10 h-full flex items-center justify-center active:scale-[0.98] transition-all hover:brightness-110">
+<span class="font-body text-xl font-medium">检索</span>
+</button>
+</div>
+<!-- Seal / Metadata Accent -->
+<!-- Decorative Year Markers -->
+</div>
+</div>
+<!-- Bottom Accent -->
+</div>
+</main>
+</body></html>
