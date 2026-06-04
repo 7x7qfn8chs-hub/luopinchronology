@@ -35,19 +35,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // 生成时间轴内容
         const timelineHTML = data.map((item, index) => `
-            <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 py-20 border-b border-outline-variant/10 timeline-entry" data-year="${item.year}">
-                <div class="md:text-right pr-12 z-10 timeline-trigger">
+            <div class="relative grid grid-cols-1 md:grid-cols-3 gap-4 py-6 border-b border-outline-variant/10 timeline-entry" data-year="${item.year}">
+                <div class="md:text-right pr-6 z-10 timeline-trigger">
                     <div class="flex flex-col md:items-end">
-                        <span class="text-4xl md:text-5xl font-headline font-medium text-primary">${item.year}</span>
-                        <span class="text-2xl md:text-3xl font-headline text-on-surface mt-1">${item.qing_calendar}</span>
-                        <span class="font-label text-xs uppercase tracking-widest text-outline mt-4 bg-surface-container-low px-2 py-1 inline-block">${item.age}岁</span>
+                        <span class="text-xl md:text-2xl font-headline font-medium text-primary">${item.year}</span>
+                        <span class="text-sm md:text-base font-headline text-on-surface mt-1">${item.qing_calendar}</span>
+                        <span class="font-label text-[10px] uppercase tracking-wide text-outline mt-2 bg-surface-container-low px-2 py-1 inline-block">${item.age}岁</span>
                     </div>
                 </div>
-                <div class="md:col-span-2 pl-4 md:pl-20">
+                <div class="md:col-span-2 pl-2 md:pl-8">
                     <div class="max-w-xl">
-                        ${item.title ? `<p class="text-2xl md:text-3xl leading-snug font-serif mb-6">${item.title}</p>` : ''}
-                        <p class="text-2xl md:text-3xl leading-snug font-serif mb-6">${item.description}</p>
-                        ${item.reference ? `<p class="text-sm font-label text-outline text-right italic tracking-wide">参考文献: ${item.reference}</p>` : ''}
+                        ${item.title ? `<p class="text-base md:text-lg leading-normal font-serif mb-2">${item.title}</p>` : ''}
+                        <p class="text-base md:text-lg leading-normal font-serif mb-2">${item.description}</p>
+                        ${item.reference ? `<p class="text-xs font-label text-outline text-right italic tracking-wide">参考文献: ${item.reference}</p>` : ''}
                     </div>
                 </div>
             </div>

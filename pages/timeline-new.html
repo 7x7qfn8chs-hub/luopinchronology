@@ -79,18 +79,10 @@
             transform: scaleY(1);
         }
 
-        .seal-bg {
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            writing-mode: vertical-rl;
-        }
-
-        /* Styling to blend the portrait seamlessly */
+        /* Portrait should render with original colors and contrast */
         .portrait-blend {
-            mix-blend-mode: multiply;
-            filter: contrast(1.05) sepia(0.2);
+            mix-blend-mode: normal;
+            filter: none;
         }
 
         /* 加载状态样式 */
@@ -110,31 +102,42 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        .year-slider {
+            writing-mode: vertical-lr;
+            direction: ltr;
+            width: 1.25rem;
+            height: 16rem;
+            accent-color: #9a131d;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary/10">
 <!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex items-center px-6 md:px-12 h-20 bg-[#fcf9f0]/85 backdrop-blur-[20px] justify-end">
     <div class="flex items-center gap-6">
-        <a href="landingpage.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> home </a>
-        <a href="research.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> search </a>
+        <a href="landingpage-fixed.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> home </a>
+        <a href="keyword-dynamic.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> search </a>
     </div>
 </header>
+
+<aside id="year-scroller" class="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-3 rounded-xl border border-outline-variant/30 bg-surface/90 px-2 py-3 shadow-sm backdrop-blur-[6px]">
+    <div class="text-[10px] font-label uppercase tracking-widest text-outline">公元年份</div>
+    <div id="year-value" class="text-sm font-semibold text-primary">1733年</div>
+    <input id="year-slider" class="year-slider" type="range" min="1733" max="1799" step="1" value="1733" aria-label="公元年份滑动轴"/>
+</aside>
 
 <main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
     <!-- Hero Section -->
     <section class="mb-24 flex flex-col md:flex-row items-end gap-12">
         <div class="flex-1">
-            <div class="mb-4 inline-block bg-primary text-on-primary px-4 py-4 seal-bg">
-                <span class="font-label text-xs uppercase tracking-[0.2em]">扬州八怪</span>
-            </div>
             <h2 class="text-6xl md:text-8xl font-headline font-light tracking-tighter mt-6">罗聘</h2>
             <p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mt-8 font-light leading-relaxed italic">
                 A detailed chronology of Luo Pin (1733–1799), the youngest of the Eight Eccentrics of Yangzhou, mapping a life of spectral visions and scholarly ink.
             </p>
         </div>
         <div class="w-full md:w-1/3 aspect-[3/4] flex items-end justify-center relative group">
-            <img alt="Luo Pin Portrait" class="max-h-full w-auto object-contain portrait-blend group-hover:scale-[1.02] transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uh7pzjma_aVZpGkkosbBwBO6lLDpWEXlAvHF8DkPXSJb6ne-duSFcVVQnaUGyHohWXIo6fG1vIykfiUzme4PkvzmY4v9vLjdyLn6xecpueU1AD3L4j5UCIZu0IyS2j5liG69181GLlk5D1e1zwWsr40ZRzW5y012X0qbna5J87Lw2qEFSZ0WrDPmQha9_ij7aGeR9FfRKah4A2NZg9qII3FGFHv5S_ttYJsHy1Xv3RtFntWGglelLMDXEgnzAIRk2mlX2cOqpYkW3A"/>
+            <img alt="Luo Pin Portrait" class="max-h-full w-auto object-contain portrait-blend group-hover:scale-[1.02] transition-transform duration-700" src="../images/luopinmei.jpg"/>
             <!-- Background decor for the portrait to sit on -->
             <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-surface-container-low/50 to-transparent -z-10"></div>
         </div>
@@ -159,9 +162,9 @@
 <footer class="w-full py-16 px-6 md:px-12 flex flex-col items-center gap-8 border-t border-[#e1bebc]/20 bg-[#f7f3ea]">
     <div class="text-lg font-serif text-[#1c1c17]">The Silent Archivist</div>
     <nav class="flex flex-wrap justify-center gap-6 md:gap-12">
-        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="landingpage.html">首页</a>
-        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="research.html">搜索</a>
-        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="keyword.html">关键词</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="landingpage-dynamic.html">首页</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="research-dynamic.html">搜索</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="keyword-dynamic.html">关键词</a>
     </nav>
     <p class="font-label text-[10px] uppercase tracking-widest text-outline/60 text-center">
         © 1644–1912 Digital Archive of the Imperial Court. All Rights Reserved.
@@ -197,20 +200,20 @@
 
             // 生成时间轴内容
             const timelineHTML = data.map(item => `
-                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 py-20 border-b border-outline-variant/10 timeline-entry" data-year="${item.year}">
-                    <div class="md:text-right pr-12 z-10 timeline-trigger">
+                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-4 py-6 border-b border-outline-variant/10 timeline-entry" data-year="${item.year}">
+                    <div class="md:text-right pr-6 z-10 timeline-trigger">
                         <div class="flex flex-col md:items-end">
-                            <span class="text-4xl md:text-5xl font-headline font-medium text-primary">${item.year}</span>
-                            <span class="text-2xl md:text-3xl font-headline text-on-surface mt-1">${item.qing_calendar}</span>
-                            <span class="font-label text-xs uppercase tracking-widest text-outline mt-4 bg-surface-container-low px-2 py-1 inline-block">${item.age}岁</span>
+                            <span class="text-xl md:text-2xl font-headline font-medium text-primary">${item.year}</span>
+                            <span class="text-sm md:text-base font-headline text-on-surface mt-1">${item.qing_calendar}</span>
+                            <span class="font-label text-[10px] uppercase tracking-wide text-outline mt-2 bg-surface-container-low px-2 py-1 inline-block">${item.age}岁</span>
                         </div>
                     </div>
-                    <div class="md:col-span-2 pl-4 md:pl-20">
+                    <div class="md:col-span-2 pl-2 md:pl-8">
                         <div class="max-w-xl">
-                            ${item.title ? `<p class="text-2xl md:text-3xl leading-snug font-serif mb-6">${item.title}</p>` : ''}
-                            <p class="text-2xl md:text-3xl leading-snug font-serif mb-6">${item.description}</p>
-                            ${item.date ? `<p class="text-lg font-serif text-outline mb-4">${item.date}</p>` : ''}
-                            ${item.reference ? `<p class="text-sm font-label text-outline text-right italic tracking-wide">参考文献: ${item.reference}</p>` : ''}
+                            ${item.title ? `<p class="text-base md:text-lg leading-normal font-serif mb-2">${item.title}</p>` : ''}
+                            <p class="text-base md:text-lg leading-normal font-serif mb-2">${item.description}</p>
+                            ${item.date ? `<p class="text-sm font-serif text-outline mb-1">${item.date}</p>` : ''}
+                            ${item.reference ? `<p class="text-xs font-label text-outline text-right italic tracking-wide">参考文献: ${item.reference}</p>` : ''}
                         </div>
                     </div>
                 </div>
@@ -236,6 +239,85 @@
 
             document.querySelectorAll('.timeline-trigger').forEach(el => observer.observe(el));
             timelineLine.classList.add('is-visible');
+
+            // 初始化左侧年份滑动轴
+            const yearScroller = document.getElementById('year-scroller');
+            const yearSlider = document.getElementById('year-slider');
+            const yearValue = document.getElementById('year-value');
+            const timelineEntries = Array.from(document.querySelectorAll('.timeline-entry'));
+            const yearTargets = new Map();
+            const years = [...new Set(data.map(item => parseInt(item.year, 10)).filter(year => !Number.isNaN(year)))].sort((a, b) => a - b);
+
+            timelineEntries.forEach((entry) => {
+                const year = parseInt(entry.dataset.year, 10);
+                if (!Number.isNaN(year) && !yearTargets.has(year)) {
+                    yearTargets.set(year, entry);
+                }
+            });
+
+            if (years.length > 0) {
+                const minYear = years[0];
+                const maxYear = years[years.length - 1];
+                let isDraggingSlider = false;
+                let ticking = false;
+
+                yearSlider.min = String(minYear);
+                yearSlider.max = String(maxYear);
+                yearSlider.value = String(minYear);
+                yearValue.textContent = `${minYear}年`;
+                yearScroller.classList.remove('hidden');
+
+                const getNearestYearTarget = (targetYear) => {
+                    if (yearTargets.has(targetYear)) return targetYear;
+                    const nextYear = years.find(year => year >= targetYear);
+                    return nextYear ?? years[years.length - 1];
+                };
+
+                const scrollToYear = (targetYear) => {
+                    const matchedYear = getNearestYearTarget(targetYear);
+                    const targetEntry = yearTargets.get(matchedYear);
+                    if (!targetEntry) return;
+                    const targetTop = targetEntry.getBoundingClientRect().top + window.scrollY - 110;
+                    window.scrollTo({ top: targetTop, behavior: 'auto' });
+                };
+
+                const getCurrentVisibleYear = () => {
+                    const threshold = window.innerHeight * 0.35;
+                    let currentYear = minYear;
+                    for (const entry of timelineEntries) {
+                        const rect = entry.getBoundingClientRect();
+                        if (rect.top <= threshold) {
+                            const year = parseInt(entry.dataset.year, 10);
+                            if (!Number.isNaN(year)) currentYear = year;
+                        } else {
+                            break;
+                        }
+                    }
+                    return currentYear;
+                };
+
+                yearSlider.addEventListener('input', () => {
+                    isDraggingSlider = true;
+                    const targetYear = parseInt(yearSlider.value, 10);
+                    yearValue.textContent = `${targetYear}年`;
+                    scrollToYear(targetYear);
+                });
+
+                yearSlider.addEventListener('change', () => {
+                    isDraggingSlider = false;
+                });
+
+                window.addEventListener('scroll', () => {
+                    if (isDraggingSlider || ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => {
+                        const currentYear = getCurrentVisibleYear();
+                        yearSlider.value = String(currentYear);
+                        yearValue.textContent = `${currentYear}年`;
+                        ticking = false;
+                    });
+                });
+            }
 
         } catch (error) {
             console.error('加载年谱数据失败:', error);

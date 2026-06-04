@@ -1,0 +1,12 @@
+文悦古典明朝体使用说明
+
+1. 字体文件位置：
+   - 请将"文悦古典明朝体 (非商业使用) W5.otf"文件重命名为"wenyue-gudian-mingchao-w5.otf"
+   - 放置到：E:\luopinchronology\fonts\wenyue-gudian-mingchao-w5.otf
+
+2. 已修改的页面：
+   - index.html (首页)：字号从12rem缩小到8rem
+   - landingpage-dynamic.html (导航页)：字号从12rem缩小到8rem
+
+3. 字体应用：
+   - 主标题"罗聘年谱

@@ -10,6 +10,33 @@ class LuoPinDataLoader {
     }
 
     /**
+     * 清理文本中的历史转义符，避免页面出现反斜杠
+     * @param {string} value 原始文本
+     * @returns {string} 清理后的文本
+     */
+    cleanText(value) {
+        if (typeof value !== 'string') return value;
+        return value
+            .replace(/\\"/g, '"')
+            .replace(/\\'/g, "'")
+            .replace(/\\/g, '');
+    }
+
+    /**
+     * 清理数据项中的字符串字段
+     * @param {Object} item 数据项
+     * @returns {Object} 清理后的数据项
+     */
+    cleanItem(item) {
+        const cleaned = {};
+        Object.keys(item).forEach((key) => {
+            const value = item[key];
+            cleaned[key] = typeof value === 'string' ? this.cleanText(value) : value;
+        });
+        return cleaned;
+    }
+
+    /**
      * 加载JSON数据
      * @returns {Promise} 返回数据加载的Promise
      */
@@ -23,7 +50,8 @@ class LuoPinDataLoader {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            this.data = await response.json();
+            const rawData = await response.json();
+            this.data = rawData.map(item => this.cleanItem(item));
             this.loaded = true;
             console.log('罗聘年谱数据加载成功，共', this.data.length, '条记录');
             return this.data;
