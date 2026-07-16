@@ -103,7 +103,7 @@
 
     <section class="w-full flex flex-col items-center mb-32 md:mb-48">
         <div class="w-full">
-            <a class="block relative group shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden bg-surface-container-low" href="keyword-dynamic.html">
+            <a class="block relative group shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden bg-surface-container-low" href="timeline-new-fixed.html">
                 <img alt="Classical Chinese painting by Luo Pin" class="w-full h-auto object-contain transform transition-transform duration-1000 group-hover:scale-[1.02]" src="../images/luopinmei.jpg"/>
             </a>
         </div>
@@ -114,11 +114,11 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex gap-8 text-sm text-on-surface-variant mb-4 md:mb-0">
                     <div class="stat-item text-center">
-                        <div class="text-2xl font-bold text-primary">2296</div>
+                        <div class="text-2xl font-bold text-primary" id="total-count">255</div>
                         <div class="text-xs uppercase tracking-wide">历史记录</div>
                     </div>
                     <div class="stat-item text-center">
-                        <div class="text-2xl font-bold text-primary">66</div>
+                        <div class="text-2xl font-bold text-primary" id="active-years">67</div>
                         <div class="text-xs uppercase tracking-wide">活动年份</div>
                     </div>
                     <div class="stat-item text-center">
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="hidden gap-6 text-sm">
-                    <a href="timeline-new.html" class="text-on-surface-variant hover:text-primary transition-colors">完整年谱</a>
+                    <a href="timeline-new-fixed.html" class="text-on-surface-variant hover:text-primary transition-colors">完整年谱</a>
                     <a href="keyword-dynamic.html" class="text-on-surface-variant hover:text-primary transition-colors">关键词</a>
                 </div>
             </div>
@@ -148,14 +148,9 @@
             try {
                 const data = await window.luoPinData.getAllData();
 
-                // Calculate year range
-                const years = data.map(item => parseInt(item.year));
-                const minYear = Math.min(...years);
-                const maxYear = Math.max(...years);
-
                 // Update stats
                 document.getElementById('total-count').textContent = data.length;
-                document.getElementById('year-range').textContent = `${minYear}-${maxYear}`;
+                document.getElementById('active-years').textContent = new Set(data.map(item => item.year)).size;
 
             } catch (error) {
                 console.error('Failed to load stats:', error);

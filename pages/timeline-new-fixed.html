@@ -102,47 +102,72 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        #year-scroller {
+            width: 5rem;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(49, 31, 25, 0.08);
+        }
+        #year-value {
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
         .year-slider {
-            writing-mode: vertical-lr;
-            direction: ltr;
-            width: 1.25rem;
-            height: 16rem;
-            accent-color: #9a131d;
+            appearance: none;
+            width: 14rem;
+            height: 1.5rem;
+            margin: 6.25rem 0;
+            transform: rotate(90deg);
+            background: transparent;
             cursor: pointer;
+        }
+        .year-slider::-webkit-slider-runnable-track {
+            height: 2px;
+            border-radius: 9999px;
+            background: #d7c8c1;
+        }
+        .year-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 1rem;
+            height: 1rem;
+            margin-top: -7px;
+            border: 4px solid #fcf9f0;
+            border-radius: 50%;
+            background: #9a131d;
+            box-shadow: 0 0 0 1px #9a131d, 0 2px 6px rgba(154, 19, 29, 0.24);
+        }
+        .year-slider:focus-visible {
+            outline: 2px solid #9a131d;
+            outline-offset: 4px;
+        }
+        .year-range-caption {
+            font-variant-numeric: tabular-nums;
+        }
+        @media (max-width: 767px) {
+            #year-scroller {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary/10">
-<!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-6 md:px-12 h-20 bg-[#fcf9f0]/85 backdrop-blur-[20px] justify-end">
-    <div class="flex items-center gap-6">
-        <a href="landingpage-fixed.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> home </a>
-        <a href="keyword-dynamic.html" class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors"> search </a>
-    </div>
+<!-- Keyword Search -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 bg-[#fcf9f0]/90 backdrop-blur-[20px]">
+    <form id="timeline-search" action="keyword-dynamic.html" method="get" class="max-w-3xl mx-auto flex items-center bg-white border border-outline-variant/60 shadow-sm focus-within:border-primary">
+        <label for="timeline-search-input" class="sr-only">关键词搜索</label>
+        <span class="material-symbols-outlined ml-4 text-outline" aria-hidden="true">search</span>
+        <input id="timeline-search-input" name="q" type="search" required placeholder="输入关键词检索年谱" class="min-w-0 flex-1 border-0 bg-transparent px-3 py-3 font-serif text-base text-on-surface placeholder:text-outline/70 focus:ring-0"/>
+        <button type="submit" class="self-stretch bg-primary px-5 font-label text-sm text-on-primary transition-colors hover:bg-primary-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">检索</button>
+    </form>
 </header>
 
-<aside id="year-scroller" class="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-3 rounded-xl border border-outline-variant/30 bg-surface/90 px-2 py-3 shadow-sm backdrop-blur-[6px]">
-    <div class="text-[10px] font-label uppercase tracking-widest text-outline">公元年份</div>
-    <div id="year-value" class="text-sm font-semibold text-primary">1733年</div>
+<aside id="year-scroller" class="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 flex-col items-center border border-outline-variant/40 bg-surface/95 px-2 py-4 backdrop-blur-[6px]">
+    <div class="text-[10px] font-label tracking-widest text-outline">年份导航</div>
+    <div id="year-value" class="mt-2 text-base font-semibold text-primary">1733年</div>
     <input id="year-slider" class="year-slider" type="range" min="1733" max="1799" step="1" value="1733" aria-label="公元年份滑动轴"/>
+    <div class="year-range-caption text-[9px] font-label tracking-wide text-outline">1733—1799</div>
 </aside>
 
-<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-    <!-- Hero Section -->
-    <section class="mb-24 flex flex-col md:flex-row items-end gap-12">
-        <div class="flex-1">
-            <h2 class="text-6xl md:text-8xl font-headline font-light tracking-tighter mt-6">罗聘</h2>
-            <p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mt-8 font-light leading-relaxed italic">
-                A detailed chronology of Luo Pin (1733–1799), the youngest of the Eight Eccentrics of Yangzhou, mapping a life of spectral visions and scholarly ink.
-            </p>
-        </div>
-        <div class="w-full md:w-1/3 aspect-[3/4] flex items-end justify-center relative group">
-            <img alt="Luo Pin Portrait" class="max-h-full w-auto object-contain portrait-blend group-hover:scale-[1.02] transition-transform duration-700" src="../images/luopinmei.jpg"/>
-            <!-- Background decor for the portrait to sit on -->
-            <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-surface-container-low/50 to-transparent -z-10"></div>
-        </div>
-    </section>
-
+<main class="pt-28 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
     <!-- Chronology Layout -->
     <div class="relative flex flex-col gap-0" id="chronology-container">
         <!-- Continuous Timeline Line -->
@@ -162,8 +187,8 @@
 <footer class="w-full py-16 px-6 md:px-12 flex flex-col items-center gap-8 border-t border-[#e1bebc]/20 bg-[#f7f3ea]">
     <div class="text-lg font-serif text-[#1c1c17]">The Silent Archivist</div>
     <nav class="flex flex-wrap justify-center gap-6 md:gap-12">
-        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="landingpage-dynamic.html">首页</a>
-        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="research-dynamic.html">搜索</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="landingpage-fixed.html">首页</a>
+        <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="keyword-dynamic.html">搜索</a>
         <a class="font-label text-[11px] uppercase font-light text-[#8d706e] hover:text-[#1c1c17] hover:underline transition-all" href="keyword-dynamic.html">关键词</a>
     </nav>
     <p class="font-label text-[10px] uppercase tracking-widest text-outline/60 text-center">
